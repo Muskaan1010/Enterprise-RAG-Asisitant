@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <!-- Palette -->
+  <defs>
+    <style type="text/css"><![CDATA[
+      .title { font: 700 20px sans-serif; fill:#0b4f6c}
+      .box-label { font: 600 14px sans-serif; fill:#0b2740 }
+      .box-sub { font: 12px sans-serif; fill:#234e52 }
+      .tool { font: 11px sans-serif; fill:#ffffff }
+    ]]></style>
+  </defs>
+
+  <!-- Title -->
+  <text x="24" y="36" class="title">Enterprise RAG Assistant — Architecture</text>
+
+  <!-- Docker boundary -->
+  <rect x="180" y="90" width="820" height="380" rx="12" fill="none" stroke="#2b8a78" stroke-dasharray="8 6" stroke-width="2" />
+  <text x="190" y="110" font-family="sans-serif" font-size="12" fill="#2b8a78">Docker: Services</text>
+
+  <!-- Left to right boxes -->
+  <!-- Ingestion -->
+  <g>
+    <rect x="40" y="120" width="160" height="100" rx="10" style="fill:#e6f6f2;stroke:#1b6b5b;stroke-width:2" />
+    <text x="60" y="150" class="box-label">Ingestion</text>
+    <text x="60" y="170" class="box-sub">PDFs, Notion</text>
+    <!-- icons -->
+    <circle cx="120" cy="190" r="12" fill="#1b6b5b" />
+    <text x="114" y="194" class="tool">PDF</text>
+  </g>
+
+  <!-- Chunking -->
+  <g>
+    <rect x="240" y="120" width="200" height="100" rx="10" style="fill:#eef6ff;stroke:#2b6cb0;stroke-width:2" />
+    <text x="260" y="150" class="box-label">Chunking</text>
+    <text x="260" y="170" class="box-sub">Text split / pages</text>
+    <circle cx="360" cy="190" r="12" fill="#2b6cb0" />
+    <text x="354" y="194" class="tool">CK</text>
+  </g>
+
+  <!-- Embeddings -->
+  <g>
+    <rect x="480" y="120" width="220" height="100" rx="10" style="fill:#f0fff4;stroke:#2b8a78;stroke-width:2" />
+    <text x="500" y="150" class="box-label">Embeddings</text>
+    <text x="500" y="170" class="box-sub">all-MiniLM (sentence-transformers)</text>
+    <circle cx="640" cy="190" r="12" fill="#2b8a78" />
+    <text x="635" y="194" class="tool">S</text>
+  </g>
+
+  <!-- Vector DB (Qdrant) with storage cylinder -->
+  <g>
+    <ellipse cx="880" cy="170" rx="60" ry="22" style="fill:#fffef6;stroke:#827717;stroke-width:2" />
+    <rect x="820" y="170" width="120" height="60" rx="6" style="fill:#fffef6;stroke:#827717;stroke-width:2" />
+    <ellipse cx="880" cy="230" rx="60" ry="22" style="fill:#fffef6;stroke:#827717;stroke-width:2" />
+    <text x="850" y="160" class="box-label">Vector DB</text>
+    <text x="850" y="180" class="box-sub">Qdrant</text>
+    <circle cx="910" cy="220" r="12" fill="#827717" />
+    <text x="904" y="224" class="tool">Q</text>
+  </g>
+
+  <!-- Retriever -->
+  <g>
+    <rect x="240" y="260" width="240" height="100" rx="10" style="fill:#fff7ed;stroke:#d97706;stroke-width:2" />
+    <text x="260" y="295" class="box-label">Retriever</text>
+    <text x="260" y="315" class="box-sub">ANN search, ranking</text>
+    <circle cx="360" cy="340" r="12" fill="#d97706" />
+    <text x="355" y="344" class="tool">R</text>
+  </g>
+
+  <!-- RAG / LLM with Guardrails -->
+  <g>
+    <rect x="520" y="260" width="300" height="120" rx="12" style="fill:#f3f6ff;stroke:#4338ca;stroke-width:2" />
+    <text x="540" y="290" class="box-label">RAG / LLM</text>
+    <text x="540" y="310" class="box-sub">Local HF / OpenAI</text>
+    <text x="540" y="330" class="box-sub">Guardrails: NeMo Guardrails / Llama Guard</text>
+    <!-- small tool icons -->
+    <circle cx="740" cy="320" r="14" fill="#4338ca" />
+    <text x="734" y="324" class="tool">LLM</text>
+    <rect x="720" y="280" width="26" height="12" rx="2" style="fill:#ef4444" />
+    <text x="722" y="290" font-size="9" fill="#fff">G</text>
+  </g>
+
+  <!-- API -->
+  <g>
+    <rect x="860" y="320" width="200" height="80" rx="10" style="fill:#f0fff7;stroke:#065f46;stroke-width:2" />
+    <text x="880" y="350" class="box-label">API</text>
+    <text x="880" y="370" class="box-sub">FastAPI</text>
+    <circle cx="1050" cy="355" r="12" fill="#065f46" />
+    <text x="1046" y="359" class="tool">F</text>
+  </g>
+
+  <!-- UI -->
+  <g>
+    <rect x="1080" y="120" width="100" height="100" rx="10" style="fill:#eef2ff;stroke:#4c1d95;stroke-width:2" />
+    <text x="1090" y="150" class="box-label">UI</text>
+    <text x="1090" y="170" class="box-sub">Streamlit</text>
+    <circle cx="1130" cy="200" r="12" fill="#4c1d95" />
+    <text x="1126" y="204" class="tool">S</text>
+  </g>
+
+  <!-- Arrows between main flow (left to right) -->
+  <line x1="200" y1="170" x2="240" y2="170" stroke="#0b4f6c" stroke-width="3" marker-end="url(#m1)" />
+  <line x1="440" y1="170" x2="480" y2="170" stroke="#0b4f6c" stroke-width="3" marker-end="url(#m1)" />
+  <line x1="700" y1="170" x2="820" y2="170" stroke="#0b4f6c" stroke-width="3" marker-end="url(#m1)" />
+
+  <line x1="360" y1="310" x2="520" y2="310" stroke="#0b4f6c" stroke-width="3" marker-end="url(#m1)" />
+  <line x1="820" y1="310" x2="860" y2="360" stroke="#0b4f6c" stroke-width="3" marker-end="url(#m1)" />
+
+  <!-- Arrow marker definition (inline-safe) -->
+  <defs>
+    <marker id="m1" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0b4f6c" />
+    </marker>
+  </defs>
+
+  <!-- Legend / icons for tools -->
+  <g>
+    <text x="24" y="520" font-family="sans-serif" font-size="12" fill="#0b2740">Legend:</text>
+    <rect x="80" y="500" width="28" height="18" rx="4" style="fill:#1b6b5b" />
+    <text x="115" y="515" font-family="sans-serif" font-size="12">PDF (ingestion)</text>
+
+    <rect x="280" y="500" width="28" height="18" rx="4" style="fill:#2b6cb0" />
+    <text x="315" y="515" font-family="sans-serif" font-size="12">Chunking</text>
+
+    <rect x="520" y="500" width="28" height="18" rx="4" style="fill:#2b8a78" />
+    <text x="555" y="515" font-family="sans-serif" font-size="12">Embeddings (all-MiniLM)</text>
+
+    <rect x="820" y="500" width="28" height="18" rx="4" style="fill:#827717" />
+    <text x="855" y="515" font-family="sans-serif" font-size="12">Qdrant</text>
+
+    <rect x="1080" y="500" width="28" height="18" rx="4" style="fill:#4c1d95" />
+    <text x="1115" y="515" font-family="sans-serif" font-size="12">Streamlit (UI)</text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="24" y="580" font-family="sans-serif" font-size="11" fill="#374151">Generated diagram — edit or replace with your own high-fidelity artwork.</text>
+</svg>
